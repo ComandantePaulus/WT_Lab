@@ -5,6 +5,7 @@
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
+[Bb]in/
 [Bb]uilds/
 [Ss]erverData/*.bundle
 Assets/AssetStoreTools*
@@ -105,7 +106,3 @@ fastlane/test_output
 
 [Mm]ockups/
 [Mm]ockups.meta
-Inventory/bin/
-Inventory/obj/
-Inventory/.vs/
-Inventory/wwwroot/Photos/
