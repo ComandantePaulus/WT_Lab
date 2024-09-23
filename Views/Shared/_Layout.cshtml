@@ -1,35 +1,51 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WT_Lab</title>
+<head >
+    <link href="~\font-awesome\css\all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WT_Lab.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/5d1b7d2b55.js" crossorigin="anonymous"></script>
+    <title>Index</title>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WT_Lab</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <div class="container">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">Грищенков П.А.</a>
+                <div class="navbar-nav">
+                    <a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Лб 1</a>
+                    <a asp-controller="Product" asp-action="Index" class="nav-item nav-link active">Каталог</a>
+                    <a asp-area="Admin" asp-page="/Index" class="nav-item nav-link active">Администрирование</a>
+                </div>
+                <a asp-controller="Cart" asp-action="Index" class="nav-item nav-link active">00,0 руб <i class="fa-solid fa-cart-shopping"></i> (0)</a>
+                <div class="dropdown ms-4 nav-color">
+                    <button class="btn btn-secondary dropdown-toggle"
+                            type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        p.a.grischenkov@gmail.com
+                        <img src="images/def.jpg" width="30"
+                             alt="User" class="rounded nav-color" />
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li>
+                            <span class="dropdown-item-text">
+                                <img src="images/def.jpg"
+                                     width="50" alt="User" class="rounded" />
+                                p.a.grischenkov@gmail.com
+                            </span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form id="logoutForm" class="form-inline" action="#">
+                                <button asp-area="Identity" asp-page="/Account/Logout" id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                            </form>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -39,7 +55,19 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - WT_Lab - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="navbar navbar-dark navbar-expand-md bg-dark">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-item nav-link" href="http://www.facebook.com">
+                        <i class="fa-brands fa-facebook-f fa-2x"></i>
+                    </a>
+                    <a class="nav-item nav-link" href="http://www.vk.com">
+                        <i class="fa-brands fa-vk fa-2x"></i>
+                    </a>
+                    <a class="nav-item nav-link" href="http://www.twitter.com">
+                        <i class="fa-brands fa-twitter fa-2x"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
