@@ -1,16 +1,18 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index"; 
 }
+@model WT_Lab.ViewModels.ListDemoViewModel
+
         <div class="container">
-            <div class="lab-title">Лабораторная работа 1</div>
+            <div class="lab-title">@ViewData["LabTitle"]</div>
             <div class="lab-list">Список</div>
             <div>
                 <ol type="A">
-                    <li>Первый пункт списка</li>
-                    <li>Второй пункт списка</li>
-                    <li>Третий пункт списка</li>
-                    <li>Четвертый пункт списка</li>
-                    <li>Пятый пункт списка</li>
+            
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <li>Пункт номер @i списка</li>
+                }
                 </ol>
             </div>
             <div class="lab-list">Форма</div>
@@ -33,6 +35,9 @@
                     <input type="radio" name="radio" value="radio3">
                     <label class="label-bold">Радио-3</label>
                 </div>
+            <div class="mb-3">
+             <select asp-for="SelectedId" asp-items="@Model.Items"></select>
+            </div>
                 <div class="mb-3">
                     <div class="mb-3">
                         <label class="label-bold">Логин</label>
