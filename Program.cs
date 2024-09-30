@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WT_Lab.Data;
-
+using WT_Lab.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +11,11 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+// Регистрация сервиса ICategoryService
+//builder.Services.AddScoped<ICategoryService, ICategoryService>();
+// Регистрация сервиса IAssetService
+//builder.Services.AddScoped<IAssetService, IAssetService>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
@@ -28,12 +33,6 @@ builder.Services.AddAuthorization(opt =>
 });
 builder.Services.AddSingleton<IEmailSender, NoOpEmailSender>();
 
-//builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
-//options.SignIn.RequireConfirmedAccount = true)
-//.AddEntityFrameworkStores<ApplicationDbContext>();
-
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
