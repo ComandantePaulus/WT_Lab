@@ -12,10 +12,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// Регистрация сервиса ICategoryService
-//builder.Services.AddScoped<ICategoryService, ICategoryService>();
-// Регистрация сервиса IAssetService
-//builder.Services.AddScoped<IAssetService, IAssetService>();
+// Регистрация сервиса MemoryAssetService
+builder.Services.AddScoped<ICategoryService,MemoryCategoryService>();
+// Регистрация сервиса MemoryAssetService
+builder.Services.AddScoped<IAssetService,MemoryAssetService>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {

@@ -2,7 +2,7 @@
 using WT_Lab.Models;
 namespace WT_Lab.Services
 {
-    public interface MemoryCategoryService:ICategoryService
+    public class MemoryCategoryService:ICategoryService
     {
         public Task<ResponseData<List<Category>>>GetCategoryListAsync()
         {
@@ -13,7 +13,9 @@ namespace WT_Lab.Services
                 new Category {ID=2, Name="ПК",
                 NormalizedName="pc"},
                 new Category {ID=3, Name="Сетевое оборудование",
-                NormalizedName="network"}
+                NormalizedName="network"},
+                new Category {ID=3, Name="Другое оборудование",
+                NormalizedName="other"},
                 };
             var result = new ResponseData<List<Category>>();
             result.Data = categories;

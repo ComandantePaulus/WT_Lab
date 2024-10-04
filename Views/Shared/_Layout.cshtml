@@ -1,28 +1,31 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head >
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="~\font-awesome\css\all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WT_Lab.styles.css" asp-append-version="true" />
+@*     <link rel="stylesheet" href="~/WT_Lab.styles.css" asp-append-version="true" /> *@
     <script src="https://kit.fontawesome.com/5d1b7d2b55.js" crossorigin="anonymous"></script>
     <title>Index</title>
 </head>
 <body>
     <header>
-        <div class="container">
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <partial name="_MenuPartial" />
-                <partial name="_UserInfoPartial" />
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                    <partial name="_MenuPartial" />
+                    <partial name="_UserInfoPartial" />
+                </nav>
                 </div>
-            </nav>
+        </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             <div class="navbar navbar-dark navbar-expand-md bg-dark">

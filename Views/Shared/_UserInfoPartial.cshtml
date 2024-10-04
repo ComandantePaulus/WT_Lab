@@ -2,7 +2,7 @@
 @if(User.Identity.IsAuthenticated)
 {
     @await Component.InvokeAsync("Cart")
-<div class="dropdown ms-4 nav-color">
+    <div class="dropdown ms-4 nav-color">
     <button class="btn btn-secondary dropdown-toggle"
             type="button" id="dropdownMenuButton"
             data-bs-toggle="dropdown"
@@ -11,16 +11,12 @@
             <img src="@Url.Action("GetAvatar","Image")"
                  width="30" alt="User"
                  class="rounded bg-light" />
-        @* <img src="images/def.jpg" width="30"
-             alt="User" class="rounded nav-color" /> *@
     </button>
 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <li>
         <span class="dropdown-item-text">
                     <img src="@Url.Action("GetAvatar","Image")"
                          width="50" alt="User" class="rounded" />
-           @*  <img src="images/def.jpg"
-                 width="50" alt="User" class="rounded" /> *@
                 @User.Identity?.Name
         </span>
     </li>
@@ -40,13 +36,3 @@ else
         <a class="nav-link nav-item" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </div>
 }
-@* else
-{
-    <div class="navbar-nav ms-auto">
-        <a asp-area="Identity"
-           asp-page="/Account/Login"
-           class="nav-item nav-link">
-            Login
-        </a>
-    </div>
-} *@
