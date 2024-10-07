@@ -36,16 +36,47 @@ namespace WT_Lab.Services
                     new Asset {ID = 4, Name="Сервер DELL VRTX",
                     Description="Основной сервер предприятия", InvNumber=45701,
                     Price =69250, Photo="images/4.png",
-                    Category=category.Find(c=>c.NormalizedName.Equals("server"))}
+                    Category=category.Find(c=>c.NormalizedName.Equals("server"))},
+                    new Asset {ID = 5, Name="Навигатор Garmin",
+                    Description="Etrex 20x", InvNumber=11225,
+                    Price =3665, Photo="images/5.png",
+                    Category=category.Find(c=>c.NormalizedName.Equals("other"))},
                 };
         }
+        //public Task<ResponseData<ProductListModel<Asset>>> GetProductListAsync(string? categoryNormalizedName, int pageNo = 1)
+        //{
+        //    var model = new ProductListModel<Asset>() { Items = _assets };
+        //    var result = new ResponseData<ProductListModel<Asset>>()
+        //    {
+        //        Data = model
+        //    };
+        //    return Task.FromResult(result);
+        //}
         public Task<ResponseData<ProductListModel<Asset>>> GetProductListAsync(string? categoryNormalizedName, int pageNo = 1)
         {
-            var model = new ProductListModel<Asset>() { Items = _assets };
-            var result = new ResponseData<ProductListModel<Asset>>()
+            // Создать объект результата
+            var result = new ResponseData<ProductListModel<Asset>>();
+            // Id категории для фильрации
+            int? categoryId = null;
+            // если требуется фильтрация, то найти Id категории
+            // с заданным categoryNormalizedName
+            if (categoryNormalizedName != null)
+                categoryId = category
+                .Find(c =>
+                c.NormalizedName.Equals(categoryNormalizedName))
+                ?.ID;
+            // Выбрать объекты, отфильтрованные по ID категории,
+            // если этот ID имеется
+            var data = _assets.Where(d => categoryId == null ||d.Category.ID.Equals(categoryId))?.ToList();
+            // поместить ранные в объект результата
+            result.Data = new ProductListModel<Asset>() { Items = data };
+            // Если список пустой
+            if (data.Count == 0)
             {
-                Data = model
-            };
+                result.Success = false;
+                result.ErrorMessage = "Нет объектов в выбраннной категории";
+            }
+            // Вернуть результат
             return Task.FromResult(result);
         }
     }

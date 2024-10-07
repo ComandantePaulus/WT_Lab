@@ -14,7 +14,7 @@ namespace WT_Lab.Services
                 NormalizedName="pc"},
                 new Category {ID=3, Name="Сетевое оборудование",
                 NormalizedName="network"},
-                new Category {ID=3, Name="Другое оборудование",
+                new Category {ID=4, Name="Другое оборудование",
                 NormalizedName="other"},
                 };
             var result = new ResponseData<List<Category>>();
