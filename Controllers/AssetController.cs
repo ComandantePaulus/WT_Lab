@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WT_Lab.Entities;
+using WT_Lab.Domain;
 using WT_Lab.Models;
 using WT_Lab.Services;
 

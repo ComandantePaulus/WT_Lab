@@ -1,4 +1,4 @@
-﻿using WT_Lab.Entities;
+﻿using WT_Lab.Domain;
 using WT_Lab.Models;
 
 namespace WT_Lab.Services

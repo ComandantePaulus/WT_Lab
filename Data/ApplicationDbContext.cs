@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using WT_Lab.Entities;
+using WT_Lab.Domain;
 
 namespace WT_Lab.Data
 {
@@ -10,6 +10,6 @@ namespace WT_Lab.Data
             : base(options)
         {
         }
-        public DbSet<WT_Lab.Entities.Asset> Asset { get; set; } = default!;
+        public DbSet<WT_Lab.Domain.Asset> Asset { get; set; } = default!;
     }
 }
