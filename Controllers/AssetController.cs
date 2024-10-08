@@ -16,7 +16,7 @@ namespace WT_Lab.Controllers
         //        return NotFound(productResponse.ErrorMessage);
         //    return View(productResponse.Data.Items);
         //}
-        public async Task<IActionResult> Index(string? category)
+        public async Task<IActionResult> Index(string? category,int pageNo= 1)
         {
             // получить список категорий
             var categoriesResponse = await
@@ -32,10 +32,10 @@ namespace WT_Lab.Controllers
             ViewData["currentCategory"] = currentCategory;
             var productResponse =
             await
-            assetService.GetProductListAsync(category);
+            assetService.GetProductListAsync(category,pageNo);
             if (!productResponse.Success)
                 ViewData["Error"] = productResponse.ErrorMessage;
-            return View(productResponse.Data.Items);
+            return View(productResponse.Data);
         }
     }
 }

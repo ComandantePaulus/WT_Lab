@@ -16,6 +16,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<ICategoryService,MemoryCategoryService>();
 // Регистрация сервиса MemoryAssetService
 builder.Services.AddScoped<IAssetService,MemoryAssetService>();
+//Для получения адреса страницы RazorPages
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {

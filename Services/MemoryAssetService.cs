@@ -1,4 +1,5 @@
-﻿using WT_Lab.Domain;
+﻿using Microsoft.AspNetCore.Mvc;
+using WT_Lab.Domain;
 using WT_Lab.Models;
 
 namespace WT_Lab.Services
@@ -7,8 +8,10 @@ namespace WT_Lab.Services
     {
         List<Asset> _assets;
         List<Category> category;
-        public MemoryAssetService(ICategoryService categoryService)
+        IConfiguration _config;
+        public MemoryAssetService([FromServices] IConfiguration config, ICategoryService categoryService)
         {
+            _config = config;
             category = categoryService.GetCategoryListAsync()
             .Result
             .Data;
@@ -52,10 +55,10 @@ namespace WT_Lab.Services
         //    };
         //    return Task.FromResult(result);
         //}
-        public Task<ResponseData<ProductListModel<Asset>>> GetProductListAsync(string? categoryNormalizedName, int pageNo = 1)
+        public Task<ResponseData<AssetListModel<Asset>>> GetProductListAsync(string? categoryNormalizedName, int pageNo = 1)
         {
             // Создать объект результата
-            var result = new ResponseData<ProductListModel<Asset>>();
+            var result = new ResponseData<AssetListModel<Asset>>();
             // Id категории для фильрации
             int? categoryId = null;
             // если требуется фильтрация, то найти Id категории
@@ -68,8 +71,24 @@ namespace WT_Lab.Services
             // Выбрать объекты, отфильтрованные по ID категории,
             // если этот ID имеется
             var data = _assets.Where(d => categoryId == null ||d.Category.ID.Equals(categoryId))?.ToList();
-            // поместить ранные в объект результата
-            result.Data = new ProductListModel<Asset>() { Items = data };
+
+            // получить размер страницы из конфигурации
+            int pageSize = _config.GetSection("ItemsPerPage").Get<int>();
+            // получить общее количество страниц
+            int totalPages = (int)Math.Ceiling(data.Count /(double)pageSize);
+            // получить данные страницы
+            var listData = new AssetListModel<Asset>()
+            {
+                Items = data.Skip((pageNo - 1) *
+            pageSize).Take(pageSize).ToList(),
+                CurrentPage = pageNo,
+                TotalPages = totalPages
+            };
+            // поместить данные в объект результата
+            result.Data = listData;
+
+            //// поместить ранные в объект результата
+            //result.Data = new ProductListModel<Asset>() { Items = data };
             // Если список пустой
             if (data.Count == 0)
             {
