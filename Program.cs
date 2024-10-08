@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using WT_Lab.Components;
 using WT_Lab.Data;
 using WT_Lab.Services;
+using WT_Lab.TagHelpers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

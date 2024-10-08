@@ -48,7 +48,19 @@
         </li>
     </ul>
 </div>
-<div class="card-group">
+
+</div>
+@if (Model != null)
+{
+    <div class="card-group">
+        @foreach (var item in Model.Items)
+        {
+            <partial name="_AssetItemPartial" model="@item" />
+        }
+    </div>
+}
+
+@* <div class="card-group">
     @foreach (var item in Model.Items)
     {
         <div class="col-4 p-4">
@@ -79,9 +91,14 @@
             </div>
         </div>
     }
-</div>
+</div> *@
 <!-- Pager -->
-<div class="row">
+
+<pager current-page="@Model.CurrentPage"
+       total-pages="@Model.TotalPages"
+       category="@category"></pager>
+
+@* <div class="row">
 <nav aria-label="Page navigation example">
 <ul class="pagination">
 <li class="page-item @(prev==Model.CurrentPage ? "disabled":"")">
@@ -117,5 +134,6 @@ asp-route-category="@category" aria-label="Previous">
             </li>
         </ul>
     </nav>
-</div> <!-- Pager -->
+</div>  *@
+<!-- Pager -->
 <h2 class="text-warning">@ViewData["Error"]</h2>
