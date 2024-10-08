@@ -46,15 +46,7 @@ namespace WT_Lab.Services
                     Category=category.Find(c=>c.NormalizedName.Equals("other"))},
                 };
         }
-        //public Task<ResponseData<ProductListModel<Asset>>> GetProductListAsync(string? categoryNormalizedName, int pageNo = 1)
-        //{
-        //    var model = new ProductListModel<Asset>() { Items = _assets };
-        //    var result = new ResponseData<ProductListModel<Asset>>()
-        //    {
-        //        Data = model
-        //    };
-        //    return Task.FromResult(result);
-        //}
+
         public Task<ResponseData<AssetListModel<Asset>>> GetProductListAsync(string? categoryNormalizedName, int pageNo = 1)
         {
             // Создать объект результата
@@ -87,8 +79,6 @@ namespace WT_Lab.Services
             // поместить данные в объект результата
             result.Data = listData;
 
-            //// поместить ранные в объект результата
-            //result.Data = new ProductListModel<Asset>() { Items = data };
             // Если список пустой
             if (data.Count == 0)
             {

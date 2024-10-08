@@ -7,15 +7,8 @@ namespace WT_Lab.Controllers
 {
     public class AssetController(IAssetService assetService, ICategoryService categoryService) : Controller
     {
-        //public async Task<IActionResult> Index()
-        //{
-        //    var productResponse =
-        //    await
-        //    assetService.GetProductListAsync(null);
-        //    if (!productResponse.Success)
-        //        return NotFound(productResponse.ErrorMessage);
-        //    return View(productResponse.Data.Items);
-        //}
+        [Route("Asset")]
+        [Route("Asset/{category}")]
         public async Task<IActionResult> Index(string? category,int pageNo= 1)
         {
             // получить список категорий

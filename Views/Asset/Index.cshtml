@@ -1,5 +1,4 @@
 ﻿@model WT_Lab.Domain.AssetListModel<Asset>
-
 @{
     ViewData["Title"] = "Index";
     var request = ViewContext.HttpContext.Request;
@@ -10,7 +9,6 @@
     int prev = Model.CurrentPage == 1? 1: Model.CurrentPage - 1;
     int next = Model.CurrentPage == Model.TotalPages? Model.TotalPages: Model.CurrentPage + 1;
 }
-
 <h1>Список активов</h1>
 <div class="col-2 border-2">
     <ul class="nav ">
