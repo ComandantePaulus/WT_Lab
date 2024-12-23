@@ -38,6 +38,8 @@ builder.Services.AddAuthorization(opt =>
 });
 builder.Services.AddSingleton<IEmailSender, NoOpEmailSender>();
 
+builder.Services.AddHttpClient<ICategoryService, ApiCategoryService>(opt=>opt.BaseAddress=new Uri("https://localhost:7002/api/categories"));
+builder.Services.AddHttpClient<IAssetService, ApiAssetService>(opt => opt.BaseAddress = new Uri("https://localhost:7002/api/assets"));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
