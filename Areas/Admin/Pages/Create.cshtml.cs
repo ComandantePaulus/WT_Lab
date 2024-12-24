@@ -2,42 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WT_Lab.Data;
 using WT_Lab.Domain;
+using WT_Lab.Services;
 
 namespace WT_Lab.Areas.Admin
 {
-    public class CreateModel : PageModel
+
+    public class CreateModel(ICategoryService categoryService, IAssetService assetService) : PageModel
     {
-        private readonly WT_Lab.Data.ApplicationDbContext _context;
-
-        public CreateModel(WT_Lab.Data.ApplicationDbContext context)
+        public async Task<IActionResult> OnGet()
         {
-            _context = context;
-        }
-
-        public IActionResult OnGet()
-        {
+            var categoryListData = await categoryService.GetCategoryListAsync();
+            ViewData["CategoryId"] = new SelectList(categoryListData.Data, "ID","Name");
             return Page();
         }
-
         [BindProperty]
         public Asset Asset { get; set; } = default!;
-
-        // For more information, see https://aka.ms/RazorPagesCRUD.
+        [BindProperty]
+        public IFormFile? Photo { get; set; }
+        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            //var categoryListData = await categoryService.GetCategoryListAsync();
+            //Asset.Category = categoryListData.Data[0];
+
+
+            ////////Вот здесь все ломается: не валидируется категория при выборе///////
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
-            _context.Asset.Add(Asset);
-            await _context.SaveChangesAsync();
-
+            await assetService.CreateAssetAsync(Asset, Photo);
             return RedirectToPage("./Index");
         }
     }

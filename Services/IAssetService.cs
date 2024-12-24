@@ -10,6 +10,10 @@ namespace WT_Lab.Services
         /// <param name="categoryNormalizedName">нормализованное имя категории для фильтрации</param>
         /// <param name="pageNo">номер страницы списка</param>
         /// <returns></returns>
+        /// 
+
+        public Task<ResponseData<Asset>> CreateAssetAsync(Asset product, IFormFile? formFile);
+
         public Task<ResponseData<AssetListModel<Asset>>> GetProductListAsync(string? categoryNormalizedName, int pageNo = 1);
         /// <summary>
         /// Поиск объекта по Id

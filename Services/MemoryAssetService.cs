@@ -88,5 +88,10 @@ namespace WT_Lab.Services
             // Вернуть результат
             return Task.FromResult(result);
         }
+
+        public Task<ResponseData<Asset>> CreateAssetAsync(Asset product, IFormFile? formFile)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
